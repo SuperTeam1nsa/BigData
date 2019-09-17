@@ -1,4 +1,7 @@
-#génération de nombres aléatoires
+#@authors: Rémi Fache, Charles-Antoine Chevrier
+#@date: 20/09/2019
+
+#Génération de nombres aléatoires
 #pour générer les variables X1 ou X2
 #ex: rCertificatBigData()
 #@in:
@@ -7,13 +10,11 @@
 #max:borne supérieure de l'intervalle de génération de la loi uniforme(défaut:1)
 #@out:
 #une variable suivant une loi uniforme sur l'intervalle [min,max]
-#@authors: Rémi Fache,CHarles-Antoine Chevrier
-#@date: 20/09/2019
 rCertificatBigData<-function(n=10000,min=0, max=1){
   return(runif(n,min,max));# n tirages loi uniforme
 }
 
-#quartile
+#Quartile
 #ex: qCertificatBigData(rCertificatBigData(),rCertificatBigData())
 #maliste=qCertificatBigData(rCertificatBigData(),rCertificatBigData())
 #puis : maliste['qY'] (renvoie les quartiles de Y)
@@ -22,9 +23,7 @@ rCertificatBigData<-function(n=10000,min=0, max=1){
 #X2: variable aléatoire
 #@out:
 #liste des quartiles de chacunes des variables caclculées (Y,Z,W).
-#@authors: Rémi Fache,CHarles-Antoine Chevrier
-#@date: 20/09/2019
-qCertificatBigData<- function(X1,X2){
+qCertificatBigData<-function(X1,X2){
   #si on souhaite un quatile précis (ici le 3ème )quantile(X,.75);
   #sinon tous les quartiles
   qY=quantile(X1+X2);
@@ -33,8 +32,8 @@ qCertificatBigData<- function(X1,X2){
   return(list('qY'=qY,'qZ'=qZ,'qW'=qW));
 }
 
-#variance 
-#Rappel: Var(X+Y)=Var(X)+Var(Y) +2.cov(X,Y) si va indépendantes 2.cov(X,Y) =0 (X1 et X2 indépendantes ici)
+#Variance 
+#Rappel: Var(X+Y)=Var(X)+Var(Y) +2.cov(X,Y) si VA indépendantes 2.cov(X,Y) =0 (X1 et X2 indépendantes ici)
 #ex: vCertificatBigData(rCertificatBigData(),rCertificatBigData())
 #maliste=vCertificatBigData(rCertificatBigData(),rCertificatBigData())
 #puis : maliste['vY'] (renvoie la variance de Y)
@@ -43,36 +42,33 @@ qCertificatBigData<- function(X1,X2){
 #X2: variable aléatoire
 #@out:
 #liste des variances de chacunes des variables caclculées (Y,Z,W).
-#@authors: Rémi Fache,CHarles-Antoine Chevrier
-#@date: 20/09/2019
 vCertificatBigData = function(X1,X2) {
   return(list('vY'=var(X1+X2), 'vZ'=var(X1*X2), 'vW'=var(X1/X2)))
 }
 
-#moyenne
-#ex: vCertificatBigData(rCertificatBigData(),rCertificatBigData())
-#maliste=vCertificatBigData(rCertificatBigData(),rCertificatBigData())
+#Moyenne
+#ex: eCertificatBigData(rCertificatBigData(),rCertificatBigData())
+#maliste=eCertificatBigData(rCertificatBigData(),rCertificatBigData())
 #puis : maliste['mY'] (renvoie la moyenne de Y)
 #@in:
 #X1: variable aléatoire 
 #X2: variable aléatoire
 #@out:
 #liste des moyennes de chacunes des variables caclculées (Y,Z,W).
-#@authors: Rémi Fache,CHarles-Antoine Chevrier
-#@date: 20/09/2019
 eCertificatBigData = function(X1,X2) {
   return(list('mY'=mean(X1+X2), 'mZ'=mean(X1*X2), 'mW'=mean(X1/X2)))
 }
 
+#Densité de probabilité (PDF)
 #rq:non-additivité loi uniforme https://ilovestatistics.be/probabilite/loi-uniforme.html
 #https://www.johndcook.com/blog/2009/02/12/sums-of-uniform-random-values/
 #ex:dCertificatBigData(rCertificatBigData(),rCertificatBigData())
 #@in:
 #X1: variable aléatoire 
 #X2: variable aléatoire
+#@out:
+#liste des densités de probabilité de chacunes des variables caclculées (Y,Z,W).
 #plotGraph: booléen permettant l'affichage ou non des graphes.
-#@authors: Rémi Fache,CHarles-Antoine Chevrier
-#@date: 20/09/2019
 dCertificatBigData = function(X1,X2,x, plotGraph=T) {
 
   Y = density(X1+X2)
@@ -87,19 +83,18 @@ dCertificatBigData = function(X1,X2,x, plotGraph=T) {
     plot(W)
   }
   
-  #return(list('dY'=Y, 'dZ'=Z, 'dW'=W))
+  return(list('dY'=Y, 'dZ'=Z, 'dW'=W))
 }
-#ex:pCertificatBigData(rCertificatBigData(),rCertificatBigData(),1)
+
+#Fonction de répartition (CDF)
+#ex:pCertificatBigData(rCertificatBigData(),rCertificatBigData())
 #@in:
 #X1: variable aléatoire 
 #X2: variable aléatoire
-#x: valeur où sera évaluée la fonction de répartition
 #plotGraph: booléen permettant l'affichage ou non des graphes.
 #@out:
-#liste des fonctions de réparttions évaluées en x de chacunes des variables caclculées (Y,Z,W).
-#@authors: Rémi Fache,CHarles-Antoine Chevrier
-#@date: 20/09/2019
-pCertificatBigData = function(X1,X2,x, plotGraph=T) {
+#liste des fonctions de répartions de chacunes des variables caclculées (Y,Z,W).
+pCertificatBigData = function(X1,X2,plotGraph=T) {
   Y = ecdf(X1+X2)
   Z = ecdf(X1*X2)
   W = ecdf(X1/X2)
@@ -111,7 +106,5 @@ pCertificatBigData = function(X1,X2,x, plotGraph=T) {
     plot(W)
   }
   
-  return(list('pY'=Y(x),'pZ'=Z(x),'pW'=W(x) ))
+  return(list('pY'=Y,'pZ'=Z,'pW'=W))
 }
-
-
