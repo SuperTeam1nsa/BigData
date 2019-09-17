@@ -1,3 +1,5 @@
+# Version 1 par CAC
+
 pCertificatBigData = function(X1,X2, plotGraph=T) {
   CDF_S = ecdf(X1+X2)
   CDF_P = ecdf(X1*X2)
