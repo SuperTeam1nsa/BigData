@@ -62,7 +62,7 @@ eCertificatBigData = function(X1,X2) {
 #Densité de probabilité (PDF)
 #rq:non-additivité loi uniforme https://ilovestatistics.be/probabilite/loi-uniforme.html
 #https://www.johndcook.com/blog/2009/02/12/sums-of-uniform-random-values/
-#ex:dCertificatBigData(rCertificatBigData(),rCertificatBigData())
+#ex:dCertificatBigData(rCertificatBigData(),rCertificatBigData(),0.5)
 #@in:
 #X1: variable aléatoire 
 #X2: variable aléatoire
@@ -82,8 +82,11 @@ dCertificatBigData = function(X1,X2,x, plotGraph=T) {
     plot(Z)
     plot(W)
   }
+  dy=Y$y[x*512/max(Y$x)]
+  dz=Z$y[x*512/max(Z$x)]
+  dw=W$y[x*512/max(W$x)]
   
-  return(list('dY'=Y, 'dZ'=Z, 'dW'=W))
+  return(list('dY'=dy, 'dZ'=dz, 'dW'=dw));
 }
 
 #Fonction de répartition (CDF)
