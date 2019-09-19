@@ -66,8 +66,9 @@ eCertificatBigData = function(X1,X2) {
 #@in:
 #X1: variable aléatoire 
 #X2: variable aléatoire
+#x : valeur où évaluer la fonction 
 #@out:
-#liste des densités de probabilité de chacunes des variables caclculées (Y,Z,W).
+#liste des densités de probabilité de chacunes des variables calculées (Y,Z,W) en x.
 #plotGraph: booléen permettant l'affichage ou non des graphes.
 dCertificatBigData = function(X1,X2,x, plotGraph=T) {
 
