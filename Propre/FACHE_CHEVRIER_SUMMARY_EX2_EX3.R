@@ -180,7 +180,7 @@ shapiro.test(res.anova$residuals)
 summary(res.anova)
 
 #COMMENTAIRES : Le test de Bartlett montre l'égalité des variances au sein de chaque groupe grâce à une p-value élevée. La normalité des résidus du modèle n'est pas vérifiée par le test de Shapiro qui indique une p-value significative : l'hypothèse nulle de normalité est rejetée, que l'on peut voir graphiquement avec la Q-Q line, les points aux extrêmes ne suivent pas la droite moyenne tracée. Un test non-paramétrique est donc à envisager.
-# Test de Bartlette ok (pvalue~=0.9 >0.05) et Shapiro-Wilk pas validé pour alpha =0.05 (p-value ~= 0.006)
+# Test de Bartlett ok (pvalue~=0.9 >0.05) et Shapiro-Wilk pas validé pour alpha =0.05 (p-value ~= 0.006)
 
 # Cas non-paramétrique : Kruskal-Wallis
 kruskal.test(maxO3 ~ vent, data=ozone)
